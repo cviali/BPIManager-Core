@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { verArr, verNameArr, clearArr } from "./";
 import Dialog from "@mui/material/Dialog";
@@ -175,7 +176,9 @@ class SongsFilter extends React.Component<P, S> {
     const { bpm, versions, bpi, memo, showLatestOnly, clearType } = this.state;
     return (
       <Dialog open={true} onClose={handleToggle}>
-        <DialogTitle>詳細フィルタ</DialogTitle>
+        <DialogTitle>
+          <FormattedMessage id="Filter.DialogTitle" />
+        </DialogTitle>
         <DialogContent>
           {memo !== null && (
             <div>
@@ -184,7 +187,7 @@ class SongsFilter extends React.Component<P, S> {
                 variant="h6"
                 style={{ marginTop: "5px" }}
               >
-                メモ
+                <FormattedMessage id="Filter.Memo" />
               </Typography>
               <FormControlLabel
                 control={
@@ -195,7 +198,7 @@ class SongsFilter extends React.Component<P, S> {
                     color="primary"
                   />
                 }
-                label="メモが記入済みの楽曲のみ表示"
+                label={<FormattedMessage id="Filter.MemoDescription" />}
               />
             </div>
           )}
@@ -211,7 +214,7 @@ class SongsFilter extends React.Component<P, S> {
                 color="primary"
               />
             }
-            label="ソフランなし"
+            label={<FormattedMessage id="Filter.NoSoflan" />}
           />
           <Grid container>
             <Grid item xs={6}>
@@ -262,7 +265,29 @@ class SongsFilter extends React.Component<P, S> {
                 color="primary"
               />
             }
-            label="ソフランあり"
+            label={<FormattedMessage id="Filter.Soflan" />}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={bpm.min !== ""}
+                onChange={this.handleInput("min")}
+                value="min"
+                color="primary"
+              />
+            }
+            label={<FormattedMessage id="Filter.BPMMin" />}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={bpm.max !== ""}
+                onChange={this.handleInput("max")}
+                value="max"
+                color="primary"
+              />
+            }
+            label={<FormattedMessage id="Filter.BPMMax" />}
           />
           {bpi && (
             <div>
@@ -283,7 +308,7 @@ class SongsFilter extends React.Component<P, S> {
                         color="primary"
                       />
                     }
-                    label="BPI表記非対応の楽曲のみを表示"
+                    label={<FormattedMessage id="Filter.ShowLatestOnly" />}
                   />
                 </div>
               )}
@@ -328,21 +353,21 @@ class SongsFilter extends React.Component<P, S> {
             </div>
           )}
           <Typography component="h6" variant="h6" style={{ marginTop: "5px" }}>
-            Versions
+            <FormattedMessage id="Filter.Versions" />
           </Typography>
           <Button
             onClick={this.allUnselect}
             color="primary"
             style={{ color: buttonTextColor() }}
           >
-            すべて選択解除
+            <FormattedMessage id="Filter.UnselectAll" />
           </Button>
           <Button
             onClick={this.allSelect}
             color="primary"
             style={{ color: buttonTextColor() }}
           >
-            すべて選択
+            <FormattedMessage id="Filter.SelectAll" />
           </Button>
           <Divider />
           <FormControlLabel
@@ -379,21 +404,21 @@ class SongsFilter extends React.Component<P, S> {
                 variant="h6"
                 style={{ marginTop: "5px" }}
               >
-                クリアタイプ
+                <FormattedMessage id="Filter.ClearType" />
               </Typography>
               <Button
                 onClick={this.allClearTypeUnselect}
                 color="primary"
                 style={{ color: buttonTextColor() }}
               >
-                すべて選択解除
+                <FormattedMessage id="Filter.UnselectAll" />
               </Button>
               <Button
                 onClick={this.allClearTypeSelect}
                 color="primary"
                 style={{ color: buttonTextColor() }}
               >
-                すべて選択
+                <FormattedMessage id="Filter.SelectAll" />
               </Button>
               <Divider />
               {clearArr().map((item) => {
@@ -418,10 +443,10 @@ class SongsFilter extends React.Component<P, S> {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleToggle} color="primary">
-            閉じる
+            <FormattedMessage id="Filter.Close" />
           </Button>
           <Button onClick={this.applyAndClose} color="primary">
-            適用
+            <FormattedMessage id="Filter.Apply" />
           </Button>
         </DialogActions>
       </Dialog>

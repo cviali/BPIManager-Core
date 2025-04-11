@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { scoreData, songData } from "@/types/data";
 import Container from "@mui/material/Container";
@@ -102,26 +103,32 @@ class SongRelations extends React.Component<P, S> {
           )}
           {!isLoading && dataset.length === 0 && (
             <Alert severity="error" style={{ marginTop: 10 }}>
-              <AlertTitle>データなし</AlertTitle>
+              <AlertTitle>
+                <FormattedMessage id="SongRelations.NoDataTitle" />
+              </AlertTitle>
               <p>
-                表示できるデータが見つかりませんでした。
+                <FormattedMessage id="SongRelations.NoDataMessage1" />
                 <br />
-                プレイ人数が少なすぎるか、データが登録されていません。
+                <FormattedMessage id="SongRelations.NoDataMessage2" />
                 <br />
-                また今度試して下さい。
+                <FormattedMessage id="SongRelations.NoDataMessage3" />
               </p>
             </Alert>
           )}
         </Container>
         <Alert severity="info" style={{ marginTop: 10 }}>
-          <AlertTitle>このタブについて</AlertTitle>
+          <AlertTitle>
+            <FormattedMessage id="SongRelations.TabInfoTitle" />
+          </AlertTitle>
           <p>
-            「{song.title}
-            」で高いスコアを出している人が、高いスコアを出しがちな楽曲を一覧表示します。
+            <FormattedMessage
+              id="SongRelations.TabInfoMessage1"
+              values={{ songTitle: song.title }}
+            />
             <br />
-            「理論スコア」は、あなたの総合BPIに相当するEXスコアを示します。
+            <FormattedMessage id="SongRelations.TabInfoMessage2" />
             <br />
-            ※2曲間のスコアに相関があることを示しており、譜面傾向が似ているとは限りません。
+            <FormattedMessage id="SongRelations.TabInfoMessage3" />
           </p>
         </Alert>
       </div>

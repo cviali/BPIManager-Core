@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { scoreData, songData } from "@/types/data";
 import Container from "@mui/material/Container";
@@ -76,24 +77,28 @@ export class DiffsTable extends React.Component<{ scoreTable: datasets[]; yourEx
   render() {
     const columns: {
       id: "rivalName" | "exScore" | "BPI" | "icon";
-      label: string;
+      label: React.ReactNode;
     }[] = [
       { id: "icon", label: "" },
-      { id: "rivalName", label: "ライバル" },
-      { id: "exScore", label: "EX" },
-      { id: "BPI", label: "BPI" },
+      { id: "rivalName", label: <FormattedMessage id="SongRivals.Rival" /> },
+      { id: "exScore", label: <FormattedMessage id="SongRivals.EX" /> },
+      { id: "BPI", label: <FormattedMessage id="SongRivals.BPI" /> },
     ];
     if (this.props.scoreTable.length === 1) {
-      //自分以外いない場合
+      // 自分以外いない場合
       return (
         <React.Fragment>
           <Alert severity="warning" variant="outlined" style={{ marginTop: "10px" }}>
-            <AlertTitle>ライバルがいません!</AlertTitle>
-            <p>総合BPIやアリーナランクなどの条件から、あなたと実力が拮抗しているライバルを探しましょう。</p>
+            <AlertTitle>
+              <FormattedMessage id="SongRivals.NoRivalsTitle" />
+            </AlertTitle>
+            <p>
+              <FormattedMessage id="SongRivals.NoRivalsMessage" />
+            </p>
           </Alert>
           <RLink to="/rivals" style={{ textDecoration: "none" }}>
             <Button variant="outlined" color="secondary" fullWidth style={{ margin: "10px 0" }}>
-              ライバルを探す
+              <FormattedMessage id="SongRivals.FindRivals" />
             </Button>
           </RLink>
         </React.Fragment>

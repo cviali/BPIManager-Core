@@ -16,6 +16,7 @@ import Filter1Icon from "@mui/icons-material/Filter1";
 import Button from "@mui/material/Button";
 import { _area, _isSingle, _currentStore } from "@/components/settings";
 import { difficultyDiscriminator } from "@/components/songs/filter";
+import { FormattedMessage } from "react-intl";
 
 const JumpWeb: React.FC<{
   song: songData;
@@ -45,19 +46,19 @@ const JumpWeb: React.FC<{
           title: "TexTage",
           icon: <FormatListBulletedIcon />,
           func: () => jumpWeb(0),
-          text: "TexTageでこの楽曲の譜面を確認します",
+          text: <FormattedMessage id="JumpWeb.TexTageDescription" />,
         },
         {
           title: "YouTube",
           icon: <YouTubeIcon />,
           func: () => jumpWeb(1),
-          text: "YouTubeでこの楽曲の動画を検索します",
+          text: <FormattedMessage id="JumpWeb.YouTubeDescription" />,
         },
         {
           title: "BPIMRanks",
           icon: <StarHalfIcon />,
           func: () => jumpWeb(2),
-          text: "この楽曲のランキングをBPIMRanksで確認します",
+          text: <FormattedMessage id="JumpWeb.BPIMRanksDescription" />,
         },
       ].map((item, key: number) => (
         <ListItem button onClick={item.func} key={key}>
@@ -76,7 +77,10 @@ const JumpWeb: React.FC<{
             <ListItemIcon>
               <Filter1Icon />
             </ListItemIcon>
-            <ListItemText primary="TOP RANKER" secondary="所属地域のTOP RANKERページのうち、この楽曲が含まれるシリーズを表示します" />
+            <ListItemText
+              primary="TOP RANKER"
+              secondary={<FormattedMessage id="JumpWeb.TopRankerDescription" />}
+            />
           </ListItem>
         </Button>
       </form>

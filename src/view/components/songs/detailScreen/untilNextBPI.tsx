@@ -25,9 +25,10 @@ const UntilNextBPI: React.FC<{
     : 0;
   const nextBPIBody = (nextBPI: number, currentScore: number) => {
     if (nextBPI < 0) nextBPI = 0;
+    
     return (
       <span>
-        BPI{nextBPI}まであと&nbsp;{nextScore - currentScore}&nbsp;点
+        {navigator.language.startsWith("ja") ? `BPI${nextBPI}まであと ${nextScore - currentScore}点` : `${nextScore - currentScore} EX until ${nextBPI}BPI`}
       </span>
     );
   };

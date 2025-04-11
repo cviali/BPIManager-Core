@@ -11,8 +11,9 @@ import { songsDB, scoresDB } from '@/components/indexedDB';
 import { songData, scoreData } from '@/types/data';
 import { config } from '@/config';
 import Button from '@mui/material/Button';
+import { FormattedMessage, injectIntl, WrappedComponentProps } from "react-intl";
 
-interface P { }
+interface P extends WrappedComponentProps { }
 interface S {
   isLoading: boolean,
   text: string
@@ -111,9 +112,9 @@ class DebugData extends React.Component<P, S> {
   copy = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(this.state.text);
-      alert("出力内容をクリップボードにコピーしました");
+      alert(this.props.intl.formatMessage({ id: "Debug.CopySuccess" }));
     } else {
-      alert("非対応ブラウザです");
+      alert(this.props.intl.formatMessage({ id: "Debug.UnsupportedBrowser" }));
     }
   }
 
@@ -125,11 +126,32 @@ class DebugData extends React.Component<P, S> {
     return (
       <Container fixed style={{ padding: 0 }}>
         <Paper style={{ padding: "15px" }}>
-          <Typography variant="caption">以下の情報は、BPIManager上で発生した問題を解決する際に必要となるデバッグ情報です。<br />
-            問題が発生した場合、お手数ですが以下のテキストを<Link href="https://twitter.com/BPIManager" color="secondary" target="_blank">@BPIManager</Link>までお寄せください(内容の書き換えはしないようお願いします)。<br />
-            長大なテキストとなりますので、<Link href="https://pastebin.pl/" color="secondary" target="_blank">Pastebin</Link>のご利用を推奨します。<br />
-            送信されたデータはソフトウェアの問題解決のためにのみ利用され、その他の利用目的に供されることはありません。</Typography>
-          <Button color="secondary" fullWidth variant="outlined" onClick={this.copy} style={{ marginTop: "10px" }}>表示内容をコピー</Button>
+          <Typography variant="caption">
+            <FormattedMessage id="Debug.Description1" />
+            <br />
+            <FormattedMessage id="Debug.Description2" />
+            <Link href="https://twitter.com/BPIManager" color="secondary" target="_blank">
+              @BPIManager
+            </Link>
+            <FormattedMessage id="Debug.Description3" />
+            <br />
+            <FormattedMessage id="Debug.Description4" />
+            <Link href="https://pastebin.pl/" color="secondary" target="_blank">
+              Pastebin
+            </Link>
+            <FormattedMessage id="Debug.Description5" />
+            <br />
+            <FormattedMessage id="Debug.Description6" />
+          </Typography>
+          <Button
+            color="secondary"
+            fullWidth
+            variant="outlined"
+            onClick={this.copy}
+            style={{ marginTop: "10px" }}
+          >
+            <FormattedMessage id="Debug.CopyButton" />
+          </Button>
           <Divider style={{ margin: "10px 0" }} />
           <TextField
             label="result"
@@ -144,4 +166,4 @@ class DebugData extends React.Component<P, S> {
   }
 }
 
-export default DebugData;
+export default injectIntl(DebugData);

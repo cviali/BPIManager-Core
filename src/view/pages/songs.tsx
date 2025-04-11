@@ -14,6 +14,7 @@ import { _showLatestSongs } from "@/components/settings";
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
+import { FormattedMessage } from "react-intl";
 
 const Songs: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
   const [full, setFull] = useState<scoreData[]>([]);
@@ -50,29 +51,33 @@ const Songs: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
           }}
         >
           <HowToVoteIcon style={{ fontSize: 80, marginBottom: "10px" }} />
-          <Typography variant="h4">スコアを追加</Typography>
+          <Typography variant="h4">
+            <FormattedMessage id="Songs.AddScore" />
+          </Typography>
         </div>
         <Divider style={{ margin: "10px 0" }} />
-        <p>BPIM にスコアが登録されていません。</p>
         <p>
-          「
-          <RLink to="/data" style={{ textDecoration: "none" }}>
-            <Link color="secondary" component="span">
-              データ取り込み
-            </Link>
-          </RLink>
-          」ページからCSVまたはブックマークレットを用いて一括インポートするか、「未プレイ」タブから手動でスコアを登録してください。
+          <FormattedMessage id="Songs.NoScoresRegistered" />
         </p>
         <p>
-          スコアの取り込みに関するヘルプは
+          <FormattedMessage id="Songs.ImportInstructions1" />
+          <RLink to="/data" style={{ textDecoration: "none" }}>
+            <Link color="secondary" component="span">
+              <FormattedMessage id="Songs.ImportPage" />
+            </Link>
+          </RLink>
+          <FormattedMessage id="Songs.ImportInstructions2" />
+        </p>
+        <p>
+          <FormattedMessage id="Songs.ImportHelp" />{" "}
           <Link
             href="https://docs2.poyashi.me/docs/imports/"
             color="secondary"
             target="_blank"
           >
-            こちら
+            <FormattedMessage id="Songs.ImportHelpLink" />
           </Link>
-          を参照してください。
+          <FormattedMessage id="Songs.ImportHelpEnd" />
         </p>
       </Container>
     );

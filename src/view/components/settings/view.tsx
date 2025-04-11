@@ -101,19 +101,34 @@ class Settings extends React.Component<P, S> {
               <FormattedMessage id="Settings.View" />
             </FormLabel>
             <FormGroup>
-              <FormControlLabel control={<Checkbox checked={this.indexOf("last")} onChange={this.changeView("last")} value="last" />} label="前回スコアからの更新点数" />
+              <FormControlLabel
+                control={<Checkbox checked={this.indexOf("last")} onChange={this.changeView("last")} value="last" />}
+                label={<FormattedMessage id="Settings.ViewLastScoreUpdate" />}
+              />
             </FormGroup>
             <FormGroup>
-              <FormControlLabel control={<Checkbox checked={this.indexOf("djLevel")} onChange={this.changeView("djLevel")} value="djLevel" />} label="DJレベル参考表示" />
+              <FormControlLabel
+                control={<Checkbox checked={this.indexOf("djLevel")} onChange={this.changeView("djLevel")} value="djLevel" />}
+                label={<FormattedMessage id="Settings.ViewDJLevel" />}
+              />
             </FormGroup>
             <FormGroup>
-              <FormControlLabel control={<Checkbox checked={this.indexOf("estRank")} onChange={this.changeView("estRank")} value="estRank" />} label="推定順位" />
+              <FormControlLabel
+                control={<Checkbox checked={this.indexOf("estRank")} onChange={this.changeView("estRank")} value="estRank" />}
+                label={<FormattedMessage id="Settings.ViewEstimatedRank" />}
+              />
             </FormGroup>
             <FormGroup>
-              <FormControlLabel control={<Checkbox checked={this.indexOf("lastVer")} onChange={this.changeView("lastVer")} value="lastVer" />} label="前作スコアからの更新点数" />
+              <FormControlLabel
+                control={<Checkbox checked={this.indexOf("lastVer")} onChange={this.changeView("lastVer")} value="lastVer" />}
+                label={<FormattedMessage id="Settings.ViewLastVersionScoreUpdate" />}
+              />
             </FormGroup>
             <FormGroup>
-              <FormControlLabel control={<Checkbox checked={this.indexOf("percentage")} onChange={this.changeView("percentage")} value="percentage" />} label="単曲スコアレート" />
+              <FormControlLabel
+                control={<Checkbox checked={this.indexOf("percentage")} onChange={this.changeView("percentage")} value="percentage" />}
+                label={<FormattedMessage id="Settings.ViewSingleSongScoreRate" />}
+              />
             </FormGroup>
           </FormControl>
           <Typography variant="caption" display="block">
@@ -121,10 +136,12 @@ class Settings extends React.Component<P, S> {
             <br />
             <FormattedMessage id="Settings.View2" />
             <br />
-            画面サイズ・補助表示の表示項目数・曲名の長さにより、項目の表示が重なることがあります。
+            <FormattedMessage id="Settings.ViewOverlapWarning" />
           </Typography>
           <Divider style={{ margin: "10px 0" }} />
-          <FormLabel component="legend">楽曲リスト/BPI非対応曲の表示</FormLabel>
+          <FormLabel component="legend">
+            <FormattedMessage id="Settings.SongListDisplay" />
+          </FormLabel>
           <Switch
             checked={showLatestSongs}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,31 +152,44 @@ class Settings extends React.Component<P, S> {
             }}
           />
           <Typography variant="caption" display="block">
-            リリースされたばかりの楽曲を楽曲リストに表示します。
+            <FormattedMessage id="Settings.ShowLatestSongsDescription1" />
             <br />
-            これらの楽曲はBPIが算出されませんが、スコアログの記録には対応しています。
+            <FormattedMessage id="Settings.ShowLatestSongsDescription2" />
             <br />
             <br />
-            (リストから非表示にしても、内部的にスコアは記録され続けます)
+            <FormattedMessage id="Settings.ShowLatestSongsDescription3" />
           </Typography>
           <Divider style={{ margin: "10px 0" }} />
           <FormControl fullWidth>
-            <FormLabel component="legend">クイックアクセス</FormLabel>
+            <FormLabel component="legend">
+              <FormattedMessage id="Settings.QuickAccess" />
+            </FormLabel>
             {quickAccessTable.map((item: any) => {
               return (
                 <FormGroup key={item.name}>
-                  <FormControlLabel control={<Checkbox checked={this.indexOfQA(item.com)} onChange={this.changeQA(item.com)} value={item.com} />} label={item.name} />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={this.indexOfQA(item.com)}
+                        onChange={this.changeQA(item.com)}
+                        value={item.com}
+                      />
+                    }
+                    label={item.name}
+                  />
                 </FormGroup>
               );
             })}
           </FormControl>
           <Typography variant="caption" display="block">
-            トップページ「クイックアクセス」に表示する機能を編集します。
+            <FormattedMessage id="Settings.QuickAccessDescription1" />
             <br />
-            よく使う機能をお好みで選択してください。
+            <FormattedMessage id="Settings.QuickAccessDescription2" />
           </Typography>
           <Divider style={{ margin: "10px 0" }} />
-          <FormLabel component="legend">楽曲名長押しでアクションメニューを表示</FormLabel>
+          <FormLabel component="legend">
+            <FormattedMessage id="Settings.ActionMenu" />
+          </FormLabel>
           <Switch
             checked={useActionMenu}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -170,10 +200,12 @@ class Settings extends React.Component<P, S> {
             }}
           />
           <Typography variant="caption" display="block">
-            楽曲一覧・未プレイ楽曲の両ページにてリスト内の楽曲名を長押しすることで外部サイト連携およびリストの編集操作が可能なメニューを表示します。
+            <FormattedMessage id="Settings.ActionMenuDescription" />
           </Typography>
           <Divider style={{ margin: "10px 0" }} />
-          <FormLabel component="legend">詳細ビューを使用 (beta)</FormLabel>
+          <FormLabel component="legend">
+            <FormattedMessage id="Settings.RichView" />
+          </FormLabel>
           <Switch
             checked={showRichView}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -184,12 +216,14 @@ class Settings extends React.Component<P, S> {
             }}
           />
           <Typography variant="caption" display="block">
-            プレイ済み楽曲リストにおいて、グラフィカルな楽曲一覧表示を使用します。
+            <FormattedMessage id="Settings.RichViewDescription1" />
             <br />
-            (補助表示の設定項目は無視されます)
+            <FormattedMessage id="Settings.RichViewDescription2" />
           </Typography>
           <Divider style={{ margin: "10px 0" }} />
-          <FormLabel component="legend">フォアグラウンドで ArenaMatch の通知を表示</FormLabel>
+          <FormLabel component="legend">
+            <FormattedMessage id="Settings.ForegroundNotification" />
+          </FormLabel>
           <Switch
             checked={foregroundNotification}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -200,7 +234,7 @@ class Settings extends React.Component<P, S> {
             }}
           />
           <Typography variant="caption" display="block">
-            自分が作成した ArenaMatch のルームに他のプレイヤーがコメントした際、アプリ内にて通知を表示します。
+            <FormattedMessage id="Settings.ForegroundNotificationDescription" />
           </Typography>
         </Paper>
       </Container>

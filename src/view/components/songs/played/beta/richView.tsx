@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { scoreData, songData } from "@/types/data";
 import { _prefix, genTitle } from "@/components/songs/filter";
@@ -284,15 +285,21 @@ class ScoreCompares extends React.Component<
       return (
         <React.Fragment>
           <div className="spaceBetween">
-            <Typography color="text.secondary">前回</Typography>
+            <Typography color="text.secondary">
+              <FormattedMessage id="RichView.LastPlay" />
+            </Typography>
             <span>…</span>
           </div>
           <div className="spaceBetween">
-            <Typography color="text.secondary">前作</Typography>
+            <Typography color="text.secondary">
+              <FormattedMessage id="RichView.LastVersion" />
+            </Typography>
             <span>…</span>
           </div>
           <div className="spaceBetween">
-            <Typography color="text.secondary">自己歴代</Typography>
+            <Typography color="text.secondary">
+              <FormattedMessage id="RichView.BestScore" />
+            </Typography>
             <span>…</span>
           </div>
         </React.Fragment>
@@ -313,15 +320,21 @@ class ScoreCompares extends React.Component<
     return (
       <React.Fragment>
         <div className="spaceBetween">
-          <Typography color="text.secondary">前回</Typography>
+          <Typography color="text.secondary">
+            <FormattedMessage id="RichView.LastPlay" />
+          </Typography>
           {compare(row.lastScore)}
         </div>
         <div className="spaceBetween">
-          <Typography color="text.secondary">前作</Typography>
+          <Typography color="text.secondary">
+            <FormattedMessage id="RichView.LastVersion" />
+          </Typography>
           {compare(lastVer)}
         </div>
         <div className="spaceBetween">
-          <Typography color="text.secondary">自己歴代</Typography>
+          <Typography color="text.secondary">
+            <FormattedMessage id="RichView.BestScore" />
+          </Typography>
           {compare(bestData)}
         </div>
       </React.Fragment>

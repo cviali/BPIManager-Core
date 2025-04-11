@@ -17,6 +17,7 @@ import bpiCalcuator from "@/components/bpi";
 import { scoresDB } from "@/components/indexedDB";
 import { defaultBackground } from "@/themes/ifColor";
 import Menu from "../common/longTapMenu";
+import { FormattedMessage } from "react-intl";
 
 const columns = [
   { id: "difficultyLevel", label: "" },
@@ -194,7 +195,7 @@ export default class SongsTable extends React.Component<Readonly<P>, S> {
                               {estRank && (
                                 <span>
                                   {row.currentBPI === Infinity && <span>-</span>}
-                                  {row.currentBPI !== Infinity && <span>{bpiCalc.rank(row.currentBPI)}位</span>}
+                                  <span>{navigator.language.startsWith("en") ? "Rank " : ""}{bpiCalc.rank(row.currentBPI)}{navigator.language.startsWith("ja") ? "位" : ""}</span>
                                 </span>
                               )}
                               {estRank && djLevel && <span>&nbsp;/&nbsp;</span>}
@@ -279,7 +280,7 @@ class LastVerComparison extends React.Component<LP, { diff: number }> {
     }
     return (
       <span style={{ color: "#909090" }}>
-        <span>前作{diff >= 0 ? "+" + diff : diff}</span>
+        <span><FormattedMessage id="RichView.LastVersion" />{diff >= 0 ? "+" + diff : diff}</span>
         {last && mode < 6 && <span>&nbsp;/&nbsp;</span>}
       </span>
     );

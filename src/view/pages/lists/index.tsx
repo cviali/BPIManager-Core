@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Button from "@mui/material/Button";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { injectIntl, WrappedComponentProps } from "react-intl";
 import * as H from "history";
 import ListAdd from "./add";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
@@ -22,6 +23,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { listNobi11, listNobi12 } from "@/components/lists";
 import { UserIcon } from "@/view/components/common/icon";
+import { FormattedMessage } from "react-intl";
 
 interface S {
   isLoading: boolean;
@@ -32,9 +34,8 @@ interface S {
   showSnackBar: boolean;
   checked: boolean;
 }
-
-class FavLists extends React.Component<{} & RouteComponentProps, S> {
-  constructor(props: {} & RouteComponentProps) {
+class FavLists extends React.Component<{} & RouteComponentProps & WrappedComponentProps, S> {
+  constructor(props: {} & RouteComponentProps & WrappedComponentProps) {
     super(props);
     this.state = {
       isLoading: true,
@@ -99,11 +100,13 @@ class FavLists extends React.Component<{} & RouteComponentProps, S> {
                 <Switch
                   checked={this.state.checked}
                   onChange={this.handleChange}
-                  name="デフォルトリストを非表示"
+                  name={this.props.intl.formatMessage({
+                    id: "Lists.HideDefaultLists",
+                  })}
                   color="primary"
                 />
               }
-              label="デフォルトリストを非表示"
+              label={<FormattedMessage id="Lists.HideDefaultLists" />}
             />
           </FormControl>
         </div>
@@ -131,7 +134,7 @@ class FavLists extends React.Component<{} & RouteComponentProps, S> {
           style={{ marginTop: "10px" }}
           onClick={() => this.toggleAddListScreen()}
         >
-          新しいリストを作成
+          <FormattedMessage id="Lists.CreateNewList" />
         </Button>
         {addList && (
           <ListAdd
@@ -157,11 +160,11 @@ class ListComponent extends React.Component<CP, {}> {
     const { data } = this.props;
     const text = (
       <span>
-        {data.description || "No description"}
+        {data.description || <FormattedMessage id="Lists.NoDescription" />}
         {data.updatedAt !== "-1" && (
           <span>
             <br />
-            最終更新: {data.updatedAt}
+            <FormattedMessage id="Lists.LastUpdated" />: {data.updatedAt}
           </span>
         )}
       </span>
@@ -201,5 +204,4 @@ class ListComponent extends React.Component<CP, {}> {
     );
   }
 }
-
-export default withRouter(FavLists);
+export default withRouter(injectIntl(FavLists));

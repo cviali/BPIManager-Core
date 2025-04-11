@@ -13,10 +13,11 @@ import { difficultyDiscriminator, _prefix } from "@/components/songs/filter";
 import { _isSingle, _currentStore, _useActionMenu } from "@/components/settings";
 import { defaultBackground } from "@/themes/ifColor";
 import Menu from "../common/longTapMenu";
+import { FormattedMessage } from "react-intl";
 
 const columns = [
   { id: "difficultyLevel", label: "☆" },
-  { id: "title", label: "曲名" },
+  { id: "title", label: <FormattedMessage id="Orders.Title" /> },
 ];
 
 interface P {

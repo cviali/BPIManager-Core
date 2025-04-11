@@ -19,6 +19,7 @@ import { scoreData, songData } from "@/types/data";
 import { newDataProps, chartData } from "../detailsScreen";
 import { SelectChangeEvent } from "@mui/material";
 import bpiCalcuator from "@/components/bpi";
+import { FormattedMessage } from "react-intl";
 
 const DetailedScreenBody: React.FC<{
   song: songData;
@@ -102,14 +103,14 @@ const DetailedScreenBody: React.FC<{
         className={"scrollableSpacebetween sc3Items"}
       >
         {[
-          { title: "BPI分布グラフ", icon: <BarChartIcon /> },
-          { title: "楽曲情報", icon: <QueueMusicIcon /> },
-          { title: "過去のプレイ履歴", icon: <HistoryIcon /> },
-          { title: "ライバルスコア", icon: <SupervisorAccountIcon /> },
-          { title: "リコメンド", icon: <LightbulbIcon /> },
-          { title: "攻略コメント", icon: <RateReviewIcon /> },
-        ].map((item) => (
-          <Tooltip key={item.title} title={item.title}>
+          { title: <FormattedMessage id="TabPanel.BPIDistribution" />, icon: <BarChartIcon /> },
+          { title: <FormattedMessage id="TabPanel.SongInfo" />, icon: <QueueMusicIcon /> },
+          { title: <FormattedMessage id="TabPanel.PlayHistory" />, icon: <HistoryIcon /> },
+          { title: <FormattedMessage id="TabPanel.RivalScores" />, icon: <SupervisorAccountIcon /> },
+          { title: <FormattedMessage id="TabPanel.Recommend" />, icon: <LightbulbIcon /> },
+          { title: <FormattedMessage id="TabPanel.Comments" />, icon: <RateReviewIcon /> },
+        ].map((item, index) => (
+          <Tooltip key={index} title={item.title}>
             <Tab icon={item.icon} />
           </Tooltip>
         ))}

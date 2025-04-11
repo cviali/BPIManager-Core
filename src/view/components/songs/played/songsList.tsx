@@ -428,7 +428,7 @@ class SongsList extends React.Component<
     const scores = this.sortedData();
     return (
       <Container fixed className="commonLayout" id="songsVil">
-        {openCaptureScr && <Captured close={this.openCaptureScr} />}
+        {openCaptureScr && <Captured close={this.openCaptureScr} intl={this.props.intl} />}
         <Typography
           component="h5"
           variant="h5"
@@ -545,11 +545,11 @@ class SongsList extends React.Component<
         />
         {scores.length === 0 && (
           <Alert severity="warning" style={{ margin: "10px 0" }}>
-            <AlertTitle>表示対象がありません</AlertTitle>
+            <AlertTitle>
+              <FormattedMessage id="Songs.NoSongsToDisplayTitle" />
+            </AlertTitle>
             <p>
-              条件に合致する楽曲がありませんでした。
-              <br />
-              フィルタ条件を変更してみてください。
+              <FormattedMessage id="Songs.NoSongsToDisplayMessage" />
             </p>
           </Alert>
         )}
@@ -590,7 +590,11 @@ class SongsList extends React.Component<
               }}
             />
           }
-          label={<Typography variant="caption">詳細ビューを使用</Typography>}
+          label={
+            <Typography variant="caption">
+              <FormattedMessage id="Songs.UseDetailedView" />
+            </Typography>
+          }
         />
         <div style={{ clear: "both" }} />
         {filterOpen && (

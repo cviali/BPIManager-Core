@@ -10,40 +10,71 @@ import SpeakerNotesIcon from "@mui/icons-material/SpeakerNotes";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import SyncProblemIcon from "@mui/icons-material/SyncProblem";
+import { FormattedMessage } from "react-intl";
 
 export const quickAccessTable = [
   {
-    name: "BPIカメラ",
+    name: <FormattedMessage id="QuickAccess.Camera" />,
     com: "camera",
     icon: <CameraAltIcon />,
     href: "/camera",
   },
-  { name: "インポート", com: "import", icon: <SaveAltIcon />, href: "/data" },
-  { name: "楽曲", com: "songs", icon: <QueueMusicIcon />, href: "/songs" },
-  { name: "ライバル", com: "rival", icon: <PeopleIcon />, href: "/rivals" },
   {
-    name: "Sync",
+    name: <FormattedMessage id="QuickAccess.Import" />,
+    com: "import",
+    icon: <SaveAltIcon />,
+    href: "/data",
+  },
+  {
+    name: <FormattedMessage id="QuickAccess.Songs" />,
+    com: "songs",
+    icon: <QueueMusicIcon />,
+    href: "/songs",
+  },
+  {
+    name: <FormattedMessage id="QuickAccess.Rival" />,
+    com: "rival",
+    icon: <PeopleIcon />,
+    href: "/rivals",
+  },
+  {
+    name: <FormattedMessage id="QuickAccess.Sync" />,
     com: "sync",
     icon: <SyncProblemIcon />,
     href: "/sync/settings",
   },
-  { name: "統計", com: "stats", icon: <TrendingUpIcon />, href: "/stats" },
-  { name: "リスト", com: "list", icon: <BookmarkIcon />, href: "/lists" },
   {
-    name: "AAA達成表",
+    name: <FormattedMessage id="QuickAccess.Stats" />,
+    com: "stats",
+    icon: <TrendingUpIcon />,
+    href: "/stats",
+  },
+  {
+    name: <FormattedMessage id="QuickAccess.List" />,
+    com: "list",
+    icon: <BookmarkIcon />,
+    href: "/lists",
+  },
+  {
+    name: <FormattedMessage id="QuickAccess.AAATable" />,
     com: "aaatable",
     icon: <WbIncandescentIcon />,
     href: "/AAATable",
   },
   {
-    name: "データ比較",
+    name: <FormattedMessage id="QuickAccess.Compare" />,
     com: "compare",
     icon: <FilterNoneIcon />,
     href: "/compare",
   },
-  { name: "Notes", com: "notes", icon: <SpeakerNotesIcon />, href: "/notes" },
   {
-    name: "ランキング",
+    name: <FormattedMessage id="QuickAccess.Notes" />,
+    com: "notes",
+    icon: <SpeakerNotesIcon />,
+    href: "/notes",
+  },
+  {
+    name: <FormattedMessage id="QuickAccess.Ranking" />,
     com: "ranking",
     icon: <EventNoteIcon />,
     href: "/ranking/",

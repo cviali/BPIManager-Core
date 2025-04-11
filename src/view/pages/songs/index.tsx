@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import Lists from "../lists";
 import Songs from "../songs";
 import NotPlayed from "../notPlayed";
+import { FormattedMessage } from "react-intl";
 
 const SongsIndex: React.FC<{ history: any; def: number }> = ({ def, history }) => {
   const [currentTab, setCurrentTab] = useState<number>(def || 0);
@@ -16,9 +17,9 @@ const SongsIndex: React.FC<{ history: any; def: number }> = ({ def, history }) =
     <>
       <AppBar position="static" className="subAppBar">
         <Tabs value={currentTab} onChange={(_event: React.ChangeEvent<{}>, newValue: number) => changeTab(newValue)} indicatorColor="secondary" variant="scrollable" scrollButtons textColor="secondary" allowScrollButtonsMobile>
-          <Tab label="プレイ済み" />
-          <Tab label="未プレイ" />
-          <Tab label="リスト" />
+          <Tab label={<FormattedMessage id="Songs.Played" />} />
+          <Tab label={<FormattedMessage id="Songs.NotPlayed" />} />
+          <Tab label={<FormattedMessage id="Songs.Lists" />} />
         </Tabs>
       </AppBar>
       {currentTab === 0 && <Songs />}

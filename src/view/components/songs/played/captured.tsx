@@ -14,9 +14,11 @@ import dayjs from "dayjs";
 import { config } from "@/config";
 import ListSubheader from "@mui/material/ListSubheader";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import { FormattedMessage } from "react-intl";
 
 interface P {
   close: () => void;
+  intl: any;
 }
 
 interface S {
@@ -186,7 +188,9 @@ class Captured extends React.Component<P, S> {
       !body.extended_entities.media[0].display_url
     ) {
       alert(
-        "画像のアップロードに失敗しました。\n少し経ってからもう一度お試しください。\n(楽曲の表示件数により、画像サイズが大きすぎてアップロードできない場合があります)"
+        this.props.intl.formatMessage({
+          id: "Captured.UploadFailed",
+        })
       );
 
       this.setState({ uploading: false });
@@ -227,22 +231,36 @@ class Captured extends React.Component<P, S> {
     const buttons = [
       {
         icon: <SaveAltIcon />,
-        primary: "カメラロールに保存",
-        secondary: "画像を端末に保存します",
+        primary: this.props.intl.formatMessage({
+          id: "Captured.SaveToCameraRoll",
+        }),
+        secondary: this.props.intl.formatMessage({
+          id: "Captured.SaveImageDescription",
+        }),
         onClick: () => this.save(),
       },
       {
         icon: <TwitterIcon />,
         primary: this.isMobile()
-          ? "ソーシャルメディアに共有"
-          : "Twitter でシェア",
-        secondary: "本日のスコア更新数などのデータとともに画像を共有します",
+          ? this.props.intl.formatMessage({
+              id: "Captured.ShareToSocialMedia",
+            })
+          : this.props.intl.formatMessage({
+              id: "Captured.ShareToTwitter",
+            }),
+        secondary: this.props.intl.formatMessage({
+          id: "Captured.ShareImageDescription",
+        }),
         onClick: () => this.upload(),
       },
       {
         icon: <CancelIcon />,
-        primary: "閉じる",
-        secondary: "何もしないで終了します",
+        primary: this.props.intl.formatMessage({
+          id: "Captured.Close",
+        }),
+        secondary: this.props.intl.formatMessage({
+          id: "Captured.CloseDescription",
+        }),
         onClick: () => this.modalClose(),
       },
     ];
@@ -250,10 +268,14 @@ class Captured extends React.Component<P, S> {
     return (
       <React.Fragment>
         <Backdrop open={capturing}>
-          <Loader text="準備しています" />
+          <Loader text={this.props.intl.formatMessage({ id: "Captured.Preparing" })} />
         </Backdrop>
         <Backdrop open={uploading}>
-          <Loader text="画像をアップロードしています" />
+          <Loader
+            text={this.props.intl.formatMessage({
+              id: "Captured.UploadingImage",
+            })}
+          />
         </Backdrop>
         <SwipeableDrawer
           anchor="bottom"
@@ -263,7 +285,9 @@ class Captured extends React.Component<P, S> {
         >
           <List
             subheader={
-              <ListSubheader component="div">キャプチャ...</ListSubheader>
+              <ListSubheader component="div">
+                <FormattedMessage id="Captured.CaptureHeader" />
+              </ListSubheader>
             }
           >
             {buttons.map((item, i) => {

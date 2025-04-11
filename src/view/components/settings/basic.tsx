@@ -323,7 +323,7 @@ class Settings extends React.Component<P, S> {
                   color="secondary"
                   href="https://github.com/BPIManager/BPIM-Scores/issues/"
                 >
-                  定義ファイルに誤りを発見した場合、こちらからお知らせください。
+                  <FormattedMessage id="Settings.reportDefinitionError" />
                 </RefLink>
               </Typography>
               {isURLDialogOpen && (
@@ -361,7 +361,7 @@ class Settings extends React.Component<P, S> {
                   display="block"
                   className="MuiFormLabel-root MuiInputLabel-animated MuiInputLabel-shrink"
                 >
-                  キャッシュクリア
+                  <FormattedMessage id="Settings.clearCache" />
                 </Typography>
                 <Button
                   variant="contained"
@@ -374,10 +374,12 @@ class Settings extends React.Component<P, S> {
                           if (registration) {
                             registration.unregister();
                             alert(
-                              "キャッシュを削除しました。一度アプリを終了し、再度起動してください。"
+                              this.props.intl.formatMessage({ id: "Settings.cacheCleared" })
                             );
                           } else {
-                            alert("削除するデータが見つかりませんでした");
+                            alert(
+                              this.props.intl.formatMessage({ id: "Settings.noDataToDelete" })
+                            );
                           }
                         });
                     }
@@ -385,11 +387,11 @@ class Settings extends React.Component<P, S> {
                   disabled={disableUpdateBtn}
                   startIcon={<AutorenewIcon />}
                 >
-                  キャッシュ削除
+                  <FormattedMessage id="Settings.clearCache" />
                 </Button>
               </FormControl>
               <Typography variant="caption" display="block">
-                BPIManager本体のキャッシュをクリアします。バージョンアップできない場合に押してください。
+                <FormattedMessage id="Settings.clearCacheDescription" />
               </Typography>
             </Paper>
           </Container>
